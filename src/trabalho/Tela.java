@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -38,7 +39,10 @@ public class Tela extends JFrame {
 	private JLabel porcentagem;
 	private JTextField descontotextfield;
 	
+	private JLabel formula;
 	
+	private JLabel textresult;
+	private JLabel result;
 	private JButton button;
 	
 //	criando uma tela grande, e dentro vou puxar os componentes
@@ -66,8 +70,13 @@ public class Tela extends JFrame {
 	private void componentesCriar () {
 		Font fontetitle = new Font( "Poppins", Font.PLAIN, 20);
 		Font fontelabels = new Font( "Poppins", Font.PLAIN, 14);
+		Font fontelabelformula = new Font( "Poppins", Font.PLAIN, 12); //Fonte para a formula
 		Color borderColor = new Color (156, 185, 188); // Cor verde em RGB
 		Color background = new Color (242, 242, 242); //Cor areia de fundo
+		Color formulaborda = new Color (230,230,230); //Cor de borda do label de fórmula
+		Color colorfontformula = new Color  (176,176,176);
+		Color resultcolor = new Color (191, 107, 33);
+		
 		
 		titleAllTela = new JLabel("Cálculos matemáticos");
 		titleAllTela.setBounds(20, 10, 300, 25);
@@ -82,7 +91,7 @@ public class Tela extends JFrame {
 		
 		//dimensões
 		painel1.setLayout(null);
-		painel1.setBounds(20,50,300,180);
+		painel1.setBounds(20,50,300,200);
 		
 		//estilização
 		painel1.setBackground(background);
@@ -132,17 +141,45 @@ public class Tela extends JFrame {
 			porcentagem.setBounds(280, 60, 25, 25);
 			porcentagem.setFont(fontelabels);
 			painel1.add(porcentagem);
+
+			//Label do resultado
+			
+			textresult = new JLabel("Resultado");
+			textresult.setFont(fontelabels);
+			textresult.setBounds(100, 90, 100, 25);
+			textresult.setForeground( resultcolor );
+			painel1.add(textresult);
+			
+			result = new JLabel();
+			result.setHorizontalAlignment(SwingConstants.CENTER);
+			result.setBounds(175, 90, 100, 25);
+			result.setFont(fontelabelformula);
+			Border customBorderResult = BorderFactory.createLineBorder(resultcolor, 2 );
+			result.setBorder(customBorderResult);
+			result.setForeground( resultcolor );
+			painel1.add(result);
+			
 			
 			//Label da fórmula
-			
+			formula = new JLabel ("v = a - (a * (b / 100)) ");
+			formula.setHorizontalAlignment(SwingConstants.CENTER);
+			formula.setBounds(20, 120,255,30);
+			formula.setFont(fontelabelformula);
+			Border customBorderFormula = BorderFactory.createLineBorder(formulaborda, 2 );
+			formula.setBorder(customBorderFormula);
+			formula.setForeground( colorfontformula );
+			painel1.add(formula);
 			
 			//Botão de envio de dados do painel 1
 			button = new JButton();
 			button.setText("Calcular");
+			button.setHorizontalAlignment(SwingConstants.CENTER);
 			button.setFont(fontelabels);
-			button.setBounds(175, 140,100,25);
+			button.setBounds(175, 155, 100, 25);
 			button.setBackground(background);
-			button.setBorder(customBorder);
+			button.setForeground( resultcolor );
+			Border customBorderButton = BorderFactory.createLineBorder(resultcolor, 2 );
+			button.setBorder(customBorderButton);
 			
 	        
 			button.addMouseListener(new MouseAdapter() {
@@ -155,7 +192,8 @@ public class Tela extends JFrame {
 			});
 			painel1.add(button);
 			
-			//Label do resultado
+		
+			
 	}
 	
 	public static void main(String[] args) {
