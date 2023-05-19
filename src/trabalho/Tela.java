@@ -14,6 +14,8 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -170,20 +172,22 @@ public class Tela extends JFrame {
 	
 	private JPanel painel9;
 	
-//	private JLabel alP8;
-//	private JTextField atfP8;
-//	
-//	private JLabel blP8;
-//	private JTextField btfP8;
-//	
-//	private JLabel r1lP8;
-//	private JTextField r1tfP8;
-//	
-//	private JLabel formulaP8;
-//	
-//	private JLabel textresultP8;
-//	private JLabel resultP8;
-//	private JButton buttonP8;
+	private JLabel maiuscula;
+	private JLabel minuscula;
+	private JLabel numeros;
+	private JLabel simbolos;
+	
+	private JCheckBox Checkmaiuscula;
+	private JCheckBox Checkminuscula;
+	private JCheckBox Checknumeros;
+	private JCheckBox Checksimbolos;
+	
+	private JLabel tamanho;
+	
+	private JLabel senha;
+	private JLabel resultsenha;
+	
+	private JButton buttonP9;
 	
 	//---------------------------------------
 	
@@ -939,6 +943,83 @@ public class Tela extends JFrame {
 			((TitledBorder) titledBorderP9).setTitleFont(fontelabels);
 			getContentPane().add(painel9);
 			
+//		
+				maiuscula = new JLabel("Maiúsculas");
+				maiuscula.setBounds(125, 30, 100,25);
+				maiuscula.setFont(fontelabels);
+				painel9.add(maiuscula);
+				
+				Checkmaiuscula = new JCheckBox();
+				Checkmaiuscula.setBounds(100, 30, 25,25);
+				Checkmaiuscula.setBackground(background);
+				Checkmaiuscula.setBorder(customBorder);
+				painel9.add(Checkmaiuscula);
+				
+				minuscula = new JLabel("Minúsculas");
+				minuscula.setBounds(270, 30, 100,25);
+				minuscula.setFont(fontelabels);
+				painel9.add(minuscula);
+				
+				Checkminuscula = new JCheckBox();
+				Checkminuscula.setBounds(245,30, 25,25);
+				Checkminuscula.setBackground(background);
+				Checkminuscula.setBorder(customBorder);
+				painel9.add(Checkminuscula);
+				
+				numeros = new JLabel("Números");
+				numeros.setBounds(125, 55, 100,25);
+				numeros.setFont(fontelabels);
+				painel9.add(numeros);
+				
+				Checknumeros = new JCheckBox();
+				Checknumeros.setBounds(100,55, 25,25);
+				Checknumeros.setBackground(background);
+				Checknumeros.setBorder(customBorder);
+				painel9.add(Checknumeros);
+				
+				
+				simbolos = new JLabel("Símbolos");
+				simbolos.setBounds(270, 55, 100,25);
+				simbolos.setFont(fontelabels);
+				painel9.add(simbolos);
+				
+				Checksimbolos = new JCheckBox();
+				Checksimbolos.setBounds(245, 55, 25,25);
+				Checksimbolos.setBackground(background);
+				Checksimbolos.setBorder(customBorder);
+				painel9.add(Checksimbolos);
+				
+				tamanho = new JLabel("Símbolos");
+				tamanho.setBounds(100, 90, 100,25);
+				tamanho.setFont(fontelabels);
+				painel9.add(tamanho);
+				
+				buttonP9 = new JButton();
+				buttonP9.setText("Calcular");
+				buttonP9.setHorizontalAlignment(SwingConstants.CENTER);
+				buttonP9.setFont(fontelabels);
+				buttonP9.setBounds(150,125,150,25);
+				buttonP9.setBackground(background);
+				buttonP9.setForeground( resultcolor );
+				buttonP9.setBorder(customBorderButton);
+				
+				buttonP9.addMouseListener(new MouseAdapter() {
+				    @Override
+				    public void mouseClicked(MouseEvent e) {
+				    	
+//				        System.out.println(Checkmaiuscula.getText());
+				       
+				    }
+				});
+				painel9.add(buttonP9);
+				
+				resultsenha = new JLabel();
+				resultsenha.setHorizontalAlignment(SwingConstants.CENTER);
+				resultsenha.setBounds(50, 160, 355,25);
+				resultsenha.setFont(fontelabelformula);
+				resultsenha.setBorder(customBorderResult);
+				resultsenha.setForeground( resultcolor );
+				painel9.add(resultsenha);
 		
 	}
 	
