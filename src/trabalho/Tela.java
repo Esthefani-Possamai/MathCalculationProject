@@ -220,15 +220,15 @@ public class Tela extends JFrame {
 		Color resultcolor = new Color (191, 107, 33);
 		
 		//Padrão da posição do primeiro label + textfield
-		Rectangle lt1 = new Rectangle(20, 30, 165, 25);
+		Rectangle lt1 = new Rectangle(20, 30, 150, 25);
 		Rectangle lt1text = new Rectangle(175, 30, 100, 25);
 		//Padrão da posição do segundo label + textfield
-		Rectangle lt2 = new Rectangle(50, 60, 165, 25);
+		Rectangle lt2 = new Rectangle(20, 60, 150, 25);
 		Rectangle lt2text = new Rectangle(175, 60, 100, 25);
 		//Padrão da posição do símbolo de porcentagem se ela estiver na segunda posição
 		Rectangle boundsporc = new Rectangle(280, 60, 25, 25);
 		//Padrão da posição do resultado label + textfield
-		Rectangle lt3 = new Rectangle(100, 90, 100, 25);
+		Rectangle lt3 = new Rectangle(20, 90, 150, 25);
 		Rectangle lt3text = new Rectangle(175, 90, 100, 25);
 		//Padrão da posição do label da fórmula
 		Rectangle lformula = new Rectangle(20, 125,255,30);
@@ -261,7 +261,8 @@ public class Tela extends JFrame {
 			
 			//Conteúdo que está dentro do Painel 1:
 			//primeiro label + textfield
-			labelinitialvalue = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalue = new JLabel("Valor inicial R$(a)");
+			labelinitialvalue.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalue.setBounds(lt1);
 			painel1.add(labelinitialvalue);
 			labelinitialvalue.setFont(fontelabels);
@@ -275,7 +276,8 @@ public class Tela extends JFrame {
 			painel1.add(initialvalue);
 			
 			//segundo label + textfield
-			labeldesconto = new JLabel("O desconto é de ");
+			labeldesconto = new JLabel("% desconto (b)");
+			labeldesconto.setHorizontalAlignment(JLabel.RIGHT);
 			labeldesconto.setBounds(lt2);
 			labeldesconto.setFont(fontelabels);
 			painel1.add(labeldesconto);
@@ -293,6 +295,7 @@ public class Tela extends JFrame {
 
 			//Label do resultado
 			textresult = new JLabel("Resultado");
+			textresult.setHorizontalAlignment(JLabel.RIGHT);
 			textresult.setFont(fontelabels);
 			textresult.setBounds(lt3);
 			textresult.setForeground( resultcolor );
@@ -353,7 +356,8 @@ public class Tela extends JFrame {
 		getContentPane().add(painel2);
 		
 			//Conteúdo que está dentro do Painel 2:
-			labelinitialvalueP2 = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalueP2 = new JLabel("Valor inicial R$(a)");
+			labelinitialvalueP2.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalueP2.setBounds(lt1);
 			painel2.add(labelinitialvalueP2);
 			labelinitialvalueP2.setFont(fontelabels);
@@ -364,7 +368,8 @@ public class Tela extends JFrame {
 			initialvalueP2.setBorder(customBorder);
 			painel2.add(initialvalueP2);
 			
-			labeldescontoP2 = new JLabel("O desconto é de ");
+			labeldescontoP2 = new JLabel("% do acréscimo (b)");
+			labeldescontoP2.setHorizontalAlignment(JLabel.RIGHT);
 			labeldescontoP2.setBounds(lt2);
 			labeldescontoP2.setFont(fontelabels);
 			painel2.add(labeldescontoP2);
@@ -381,6 +386,7 @@ public class Tela extends JFrame {
 			painel2.add(porcentagemP2);
 	
 			textresultP2 = new JLabel("Resultado");
+			textresultP2.setHorizontalAlignment(JLabel.RIGHT);
 			textresultP2.setFont(fontelabels);
 			textresultP2.setBounds(lt3);
 			textresultP2.setForeground( resultcolor );
@@ -394,7 +400,7 @@ public class Tela extends JFrame {
 			resultP2.setForeground( resultcolor );
 			painel2.add(resultP2);
 
-			formulaP2 = new JLabel ("v = a - (a * (b / 100)) ");
+			formulaP2 = new JLabel ("");
 			formulaP2.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP2.setBounds(lformula);
 			formulaP2.setFont(fontelabelformula);
@@ -434,7 +440,8 @@ public class Tela extends JFrame {
 		getContentPane().add(painel3);
 		
 			//Conteúdo que está dentro do Painel 3:
-			labelinitialvalueP3 = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalueP3 = new JLabel("Total (a)");
+			labelinitialvalueP3.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalueP3.setBounds(lt1);
 			painel3.add(labelinitialvalueP3);
 			labelinitialvalueP3.setFont(fontelabels);
@@ -445,7 +452,8 @@ public class Tela extends JFrame {
 			initialvalueP3.setBorder(customBorder);
 			painel3.add(initialvalueP3);
 			
-			labeldescontoP3 = new JLabel("O desconto é de ");
+			labeldescontoP3 = new JLabel("Porcentagem (b)");
+			labeldescontoP3.setHorizontalAlignment(JLabel.RIGHT);
 			labeldescontoP3.setBounds(lt2);
 			labeldescontoP3.setFont(fontelabels);
 			painel3.add(labeldescontoP3);
@@ -461,7 +469,8 @@ public class Tela extends JFrame {
 			porcentagemP3.setFont(fontelabels);
 			painel3.add(porcentagemP3);
 	
-			textresultP3 = new JLabel("Resultado");
+			textresultP3 = new JLabel("Corresponde a");
+			textresultP3.setHorizontalAlignment(JLabel.RIGHT);
 			textresultP3.setFont(fontelabels);
 			textresultP3.setBounds(lt3);
 			textresultP3.setForeground( resultcolor );
@@ -475,7 +484,7 @@ public class Tela extends JFrame {
 			resultP3.setForeground( resultcolor );
 			painel3.add(resultP3);
 	
-			formulaP3 = new JLabel ("v = a - (a * (b / 100)) ");
+			formulaP3 = new JLabel ("v = (a * b) / 100");
 			formulaP3.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP3.setBounds(lformula);
 			formulaP3.setFont(fontelabelformula);
@@ -515,7 +524,8 @@ public class Tela extends JFrame {
 		getContentPane().add(painel4);
 		
 			//Conteúdo que está dentro do Painel 4:
-			labelinitialvalueP4 = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalueP4 = new JLabel("Total (a)");
+			labelinitialvalueP4.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalueP4.setBounds(lt1);
 			painel4.add(labelinitialvalueP4);
 			labelinitialvalueP4.setFont(fontelabels);
@@ -526,7 +536,8 @@ public class Tela extends JFrame {
 			initialvalueP4.setBorder(customBorder);
 			painel4.add(initialvalueP4);
 			
-			labeldescontoP4 = new JLabel("O desconto é de ");
+			labeldescontoP4 = new JLabel("Parte (b)");
+			labeldescontoP4.setHorizontalAlignment(JLabel.RIGHT);
 			labeldescontoP4.setBounds(lt2);
 			labeldescontoP4.setFont(fontelabels);
 			painel4.add(labeldescontoP4);
@@ -542,7 +553,8 @@ public class Tela extends JFrame {
 			porcentagemP4.setFont(fontelabels);
 			painel4.add(porcentagemP4);
 	
-			textresultP4 = new JLabel("Resultado");
+			textresultP4 = new JLabel("Corresponde a %");
+			textresultP4.setHorizontalAlignment(JLabel.RIGHT);
 			textresultP4.setFont(fontelabels);
 			textresultP4.setBounds(lt3);
 			textresultP4.setForeground( resultcolor );
@@ -556,7 +568,7 @@ public class Tela extends JFrame {
 			resultP4.setForeground( resultcolor );
 			painel4.add(resultP4);
 	
-			formulaP4 = new JLabel ("v = a - (a * (b / 100)) ");
+			formulaP4 = new JLabel ("");
 			formulaP4.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP4.setBounds(lformula);
 			formulaP4.setFont(fontelabelformula);
@@ -597,7 +609,8 @@ public class Tela extends JFrame {
 		getContentPane().add(painel5);
 		
 			//Conteúdo que está dentro do Painel 2:
-			labelinitialvalueP5 = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalueP5 = new JLabel("Valor original (a)");
+			labelinitialvalueP5.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalueP5.setBounds(lt1);
 			painel5.add(labelinitialvalueP5);
 			labelinitialvalueP5.setFont(fontelabels);
@@ -608,7 +621,8 @@ public class Tela extends JFrame {
 			initialvalueP5.setBorder(customBorder);
 			painel5.add(initialvalueP5);
 			
-			labeldescontoP5 = new JLabel("O desconto é de ");
+			labeldescontoP5 = new JLabel("Valor c/ desconto (b)");
+			labeldescontoP5.setHorizontalAlignment(JLabel.RIGHT);
 			labeldescontoP5.setBounds(lt2);
 			labeldescontoP5.setFont(fontelabels);
 			painel5.add(labeldescontoP5);
@@ -624,7 +638,8 @@ public class Tela extends JFrame {
 			porcentagemP5.setFont(fontelabels);
 			painel5.add(porcentagemP5);
 
-			textresultP5 = new JLabel("Resultado");
+			textresultP5 = new JLabel("% desconto");
+			textresultP5.setHorizontalAlignment(JLabel.RIGHT);
 			textresultP5.setFont(fontelabels);
 			textresultP5.setBounds(lt3);
 			textresultP5.setForeground( resultcolor );
@@ -638,7 +653,7 @@ public class Tela extends JFrame {
 			resultP5.setForeground( resultcolor );
 			painel5.add(resultP5);
 	
-			formulaP5 = new JLabel ("v = a - (a * (b / 100)) ");
+			formulaP5 = new JLabel ("v = ((a - b) / a ) * 100");
 			formulaP5.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP5.setBounds(lformula);
 			formulaP5.setFont(fontelabelformula);
@@ -678,7 +693,8 @@ public class Tela extends JFrame {
 		getContentPane().add(painel6);
 		
 			//Conteúdo que está dentro do Painel 6:
-			labelinitialvalueP6 = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalueP6 = new JLabel("Valor inicial (a)");
+			labelinitialvalueP6.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalueP6.setBounds(lt1);
 			labelinitialvalueP6.setFont(fontelabels);
 			painel6.add(labelinitialvalueP6);
@@ -689,7 +705,8 @@ public class Tela extends JFrame {
 			initialvalueP6.setBorder(customBorder);
 			painel6.add(initialvalueP6);
 			
-			labeldescontoP6 = new JLabel("O desconto é de ");
+			labeldescontoP6 = new JLabel("Valor final (b)");
+			labeldescontoP6.setHorizontalAlignment(JLabel.RIGHT);
 			labeldescontoP6.setBounds(lt2);
 			labeldescontoP6.setFont(fontelabels);
 			painel6.add(labeldescontoP6);
@@ -705,7 +722,8 @@ public class Tela extends JFrame {
 			porcentagemP6.setFont(fontelabels);
 			painel6.add(porcentagemP6);
 	
-			textresultP6 = new JLabel("Resultado");
+			textresultP6 = new JLabel("Diferença %");
+			textresultP6.setHorizontalAlignment(JLabel.RIGHT);
 			textresultP6.setFont(fontelabels);
 			textresultP6.setBounds(lt3);
 			textresultP6.setForeground( resultcolor );
@@ -719,7 +737,7 @@ public class Tela extends JFrame {
 			resultP6.setForeground( resultcolor );
 			painel6.add(resultP6);
 	
-			formulaP6 = new JLabel ("v = a - (a * (b / 100)) ");
+			formulaP6 = new JLabel ("");
 			formulaP6.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP6.setBounds(lformula);
 			formulaP6.setFont(fontelabelformula);
@@ -759,7 +777,8 @@ public class Tela extends JFrame {
 		getContentPane().add(painel7);
 		
 			//Conteúdo que está dentro do Painel 7:
-			labelinitialvalueP7 = new JLabel("O valor inicial é de R$ ");
+			labelinitialvalueP7 = new JLabel("Valor final R$ (a)");
+			labelinitialvalueP7.setHorizontalAlignment(JLabel.RIGHT);
 			labelinitialvalueP7.setBounds(lt1);
 			labelinitialvalueP7.setFont(fontelabels);
 			painel7.add(labelinitialvalueP7);
@@ -770,7 +789,8 @@ public class Tela extends JFrame {
 			initialvalueP7.setBorder(customBorder);
 			painel7.add(initialvalueP7);
 			
-			labeldescontoP7 = new JLabel("O desconto é de ");
+			labeldescontoP7 = new JLabel("% desconto (b)");
+			labeldescontoP7.setHorizontalAlignment(JLabel.RIGHT);
 			labeldescontoP7.setBounds(lt2);
 			labeldescontoP7.setFont(fontelabels);
 			painel7.add(labeldescontoP7);
@@ -786,7 +806,8 @@ public class Tela extends JFrame {
 			porcentagemP7.setFont(fontelabels);
 			painel7.add(porcentagemP7);
 	
-			textresultP7 = new JLabel("Resultado");
+			textresultP7 = new JLabel("Valor inicial");
+			textresultP7.setHorizontalAlignment(JLabel.RIGHT);
 			textresultP7.setFont(fontelabels);
 			textresultP7.setBounds(lt3);
 			textresultP7.setForeground( resultcolor );
@@ -800,7 +821,7 @@ public class Tela extends JFrame {
 			resultP7.setForeground( resultcolor );
 			painel7.add(resultP7);
 	
-			formulaP7 = new JLabel ("v = a - (a * (b / 100)) ");
+			formulaP7 = new JLabel ("v = (a * 100 / (100 - b))");
 			formulaP7.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP7.setBounds(lformula);
 			formulaP7.setFont(fontelabelformula);
@@ -901,7 +922,7 @@ public class Tela extends JFrame {
 				resultP8.setForeground( resultcolor );
 				painel8.add(resultP8);
 				
-				formulaP8 = new JLabel ("v = a - (a * (b / 100)) ");
+				formulaP8 = new JLabel ("r2 = (r1 * b) / a");
 				formulaP8.setHorizontalAlignment(SwingConstants.CENTER);
 				formulaP8.setBounds(50,115,355, 30 );
 				formulaP8.setFont(fontelabelformula);
@@ -943,7 +964,6 @@ public class Tela extends JFrame {
 			((TitledBorder) titledBorderP9).setTitleFont(fontelabels);
 			getContentPane().add(painel9);
 			
-//		
 				maiuscula = new JLabel("Maiúsculas");
 				maiuscula.setBounds(125, 30, 100,25);
 				maiuscula.setFont(fontelabels);
@@ -952,6 +972,7 @@ public class Tela extends JFrame {
 				Checkmaiuscula = new JCheckBox();
 				Checkmaiuscula.setBounds(100, 30, 25,25);
 				Checkmaiuscula.setBackground(background);
+				Checkmaiuscula.setBorder(customBorder);
 				Checkmaiuscula.setBorder(customBorder);
 				painel9.add(Checkmaiuscula);
 				
