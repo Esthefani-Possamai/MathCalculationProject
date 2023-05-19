@@ -18,15 +18,21 @@ import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.AbstractDocument;
+
+import util.NumericAndLengthFilter;
 
 
 public class Tela extends JFrame {
@@ -183,6 +189,7 @@ public class Tela extends JFrame {
 	private JCheckBox Checksimbolos;
 	
 	private JLabel tamanho;
+	private JSpinner senhatam;
 	
 	private JLabel senha;
 	private JLabel resultsenha;
@@ -190,6 +197,50 @@ public class Tela extends JFrame {
 	private JButton buttonP9;
 	
 	//---------------------------------------
+	
+	//Variáveis dos resultados:
+	String resultadoString = "";
+	
+	private class IntegerOnlySpinnerModel extends SpinnerNumberModel {
+        public IntegerOnlySpinnerModel() {
+            super(1, 1, Integer.MAX_VALUE, 1);
+        }
+
+        @Override
+        public Object getNextValue() {
+            Object value = super.getNextValue();
+            return validateValue(value);
+        }
+
+        @Override
+        public Object getPreviousValue() {
+            Object value = super.getPreviousValue();
+            return validateValue(value);
+        }
+
+        private Object validateValue(Object value) {
+            if (value instanceof Integer) {
+                int intValue = (int) value;
+                if (intValue < 0) {
+                    value = getNextValue();
+                }
+            }
+            return value;
+        }
+
+        @Override
+        public Object getValue() {
+            Object value = super.getValue();
+            return validateValue(value);
+        }
+
+        @Override
+        public void setValue(Object value) {
+            value = validateValue(value);
+            super.setValue(value);
+        }
+    }
+	
 	
 //	criando uma tela grande, e dentro vou puxar os componentes
 	public Tela () {
@@ -269,6 +320,7 @@ public class Tela extends JFrame {
 			
 			
 			initialvalue = new JTextField();
+			((AbstractDocument) initialvalue.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalue.setBounds(lt1text);
 			initialvalue.setBackground(background);
 			Border customBorder = BorderFactory.createLineBorder(borderColor, 2 );
@@ -283,6 +335,7 @@ public class Tela extends JFrame {
 			painel1.add(labeldesconto);
 			
 			descontotextfield = new JTextField();
+			((AbstractDocument) descontotextfield.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfield.setBounds(lt2text);
 			descontotextfield.setBackground(background);
 			descontotextfield.setBorder(customBorder);
@@ -301,7 +354,7 @@ public class Tela extends JFrame {
 			textresult.setForeground( resultcolor );
 			painel1.add(textresult);
 			
-			result = new JLabel();
+			result = new JLabel(resultadoString);
 			result.setHorizontalAlignment(SwingConstants.CENTER);
 			result.setBounds(lt3text);
 			result.setFont(fontelabelformula);
@@ -309,7 +362,6 @@ public class Tela extends JFrame {
 			result.setBorder(customBorderResult);
 			result.setForeground( resultcolor );
 			painel1.add(result);
-			
 			
 			//Label da fórmula
 			formula = new JLabel ("v = a - (a * (b / 100)) ");
@@ -336,12 +388,17 @@ public class Tela extends JFrame {
 			button.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalue.getText());
-			        System.out.println(descontotextfield.getText());
+			    	double a = Double.parseDouble(initialvalue.getText());
+			    	double b = Double.parseDouble(descontotextfield.getText());	
+			        Funcoes funcoes = new Funcoes(a,b);
+			        double resultado = funcoes.aplicarDescontoNumValor();
+			        resultadoString = String.valueOf(resultado); 
+			        result.setText(resultadoString);
 			    }
 			});
 			painel1.add(button);
+			
+			
 			
 		//painel 2 
 		painel2 = new JPanel();
@@ -363,6 +420,7 @@ public class Tela extends JFrame {
 			labelinitialvalueP2.setFont(fontelabels);
 		
 			initialvalueP2 = new JTextField();
+			((AbstractDocument) initialvalueP2.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalueP2.setBounds(lt1text);
 			initialvalueP2.setBackground(background);
 			initialvalueP2.setBorder(customBorder);
@@ -375,6 +433,7 @@ public class Tela extends JFrame {
 			painel2.add(labeldescontoP2);
 			
 			descontotextfieldP2 = new JTextField();
+			((AbstractDocument) descontotextfieldP2.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfieldP2.setBounds(lt2text);
 			descontotextfieldP2.setBackground(background);
 			descontotextfieldP2.setBorder(customBorder);
@@ -400,7 +459,7 @@ public class Tela extends JFrame {
 			resultP2.setForeground( resultcolor );
 			painel2.add(resultP2);
 
-			formulaP2 = new JLabel ("");
+			formulaP2 = new JLabel ("v = a + ((a * b) / 100)");
 			formulaP2.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP2.setBounds(lformula);
 			formulaP2.setFont(fontelabelformula);
@@ -447,6 +506,7 @@ public class Tela extends JFrame {
 			labelinitialvalueP3.setFont(fontelabels);
 		
 			initialvalueP3 = new JTextField();
+			((AbstractDocument) initialvalueP3.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalueP3.setBounds(lt1text);
 			initialvalueP3.setBackground(background);
 			initialvalueP3.setBorder(customBorder);
@@ -459,6 +519,7 @@ public class Tela extends JFrame {
 			painel3.add(labeldescontoP3);
 			
 			descontotextfieldP3 = new JTextField();
+			((AbstractDocument) descontotextfieldP3.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfieldP3.setBounds(lt2text);
 			descontotextfieldP3.setBackground(background);
 			descontotextfieldP3.setBorder(customBorder);
@@ -531,6 +592,7 @@ public class Tela extends JFrame {
 			labelinitialvalueP4.setFont(fontelabels);
 		
 			initialvalueP4 = new JTextField();
+			((AbstractDocument) initialvalueP4.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalueP4.setBounds(lt1text);
 			initialvalueP4.setBackground(background);
 			initialvalueP4.setBorder(customBorder);
@@ -543,6 +605,7 @@ public class Tela extends JFrame {
 			painel4.add(labeldescontoP4);
 			
 			descontotextfieldP4 = new JTextField();
+			((AbstractDocument) descontotextfieldP4.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfieldP4.setBounds(lt2text);
 			descontotextfieldP4.setBackground(background);
 			descontotextfieldP4.setBorder(customBorder);
@@ -568,7 +631,7 @@ public class Tela extends JFrame {
 			resultP4.setForeground( resultcolor );
 			painel4.add(resultP4);
 	
-			formulaP4 = new JLabel ("");
+			formulaP4 = new JLabel ("v = (b / a) * 100");
 			formulaP4.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP4.setBounds(lformula);
 			formulaP4.setFont(fontelabelformula);
@@ -616,6 +679,7 @@ public class Tela extends JFrame {
 			labelinitialvalueP5.setFont(fontelabels);
 		
 			initialvalueP5 = new JTextField();
+			((AbstractDocument) initialvalueP5.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalueP5.setBounds(lt1text);
 			initialvalueP5.setBackground(background);
 			initialvalueP5.setBorder(customBorder);
@@ -628,6 +692,7 @@ public class Tela extends JFrame {
 			painel5.add(labeldescontoP5);
 			
 			descontotextfieldP5 = new JTextField();
+			((AbstractDocument) descontotextfieldP5.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfieldP5.setBounds(lt2text);
 			descontotextfieldP5.setBackground(background);
 			descontotextfieldP5.setBorder(customBorder);
@@ -700,6 +765,8 @@ public class Tela extends JFrame {
 			painel6.add(labelinitialvalueP6);
 		
 			initialvalueP6 = new JTextField();
+			 // Add the document filter to text field for numeric and length check.
+	        ((AbstractDocument) initialvalueP6.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalueP6.setBounds(lt1text);
 			initialvalueP6.setBackground(background);
 			initialvalueP6.setBorder(customBorder);
@@ -712,6 +779,7 @@ public class Tela extends JFrame {
 			painel6.add(labeldescontoP6);
 			
 			descontotextfieldP6 = new JTextField();
+			((AbstractDocument) descontotextfieldP6.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfieldP6.setBounds(lt2text);
 			descontotextfieldP6.setBackground(background);
 			descontotextfieldP6.setBorder(customBorder);
@@ -760,6 +828,18 @@ public class Tela extends JFrame {
 			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
 			        System.out.println(initialvalueP6.getText());
 			        System.out.println(descontotextfieldP6.getText());
+//			        
+//			        try {
+//			        	double a = Double.parseDouble(initialvalueP6.getText());	
+//			        }
+//			        catch (Exception ex) {
+//						JOptionPane.showMessageDialog(null, "Conteudo invalido no campo <VALOR INICIAL (A)>");
+//						initialvalueP6.requestFocus();
+//						initialvalueP6.setSelectionStart(0);
+//						initialvalueP6.setSelectionEnd(initialvalueP6.getText().length());
+//					}
+			        
+			        
 			    }
 			});
 			painel6.add(buttonP6);
@@ -784,6 +864,7 @@ public class Tela extends JFrame {
 			painel7.add(labelinitialvalueP7);
 		
 			initialvalueP7 = new JTextField();
+			((AbstractDocument) initialvalueP7.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			initialvalueP7.setBounds(lt1text);
 			initialvalueP7.setBackground(background);
 			initialvalueP7.setBorder(customBorder);
@@ -796,6 +877,7 @@ public class Tela extends JFrame {
 			painel7.add(labeldescontoP7);
 			
 			descontotextfieldP7 = new JTextField();
+			((AbstractDocument) descontotextfieldP7.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 			descontotextfieldP7.setBounds(lt2text);
 			descontotextfieldP7.setBackground(background);
 			descontotextfieldP7.setBorder(customBorder);
@@ -867,6 +949,7 @@ public class Tela extends JFrame {
 				painel8.add(alP8);
 			
 				atfP8 = new JTextField();
+				((AbstractDocument) atfP8.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 				atfP8.setBounds(90, 40, 100,25);
 				atfP8.setBackground(background);
 				atfP8.setBorder(customBorder);
@@ -892,6 +975,7 @@ public class Tela extends JFrame {
 				painel8.add(blP8);
 			
 				btfP8 = new JTextField();
+				((AbstractDocument) btfP8.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 				btfP8.setBounds(90, 75, 100,25);
 				btfP8.setBackground(background);
 				btfP8.setBorder(customBorder);
@@ -903,6 +987,7 @@ public class Tela extends JFrame {
 				painel8.add(r1lP8);
 			
 				r1tfP8 = new JTextField();
+				((AbstractDocument) r1tfP8.getDocument()).setDocumentFilter(new NumericAndLengthFilter(15));
 				r1tfP8.setBounds(290, 40, 100,25);
 				r1tfP8.setBackground(background);
 				r1tfP8.setBorder(customBorder);
@@ -1010,10 +1095,15 @@ public class Tela extends JFrame {
 				Checksimbolos.setBorder(customBorder);
 				painel9.add(Checksimbolos);
 				
-				tamanho = new JLabel("Símbolos");
+				tamanho = new JLabel("Tamanho");
 				tamanho.setBounds(100, 90, 100,25);
 				tamanho.setFont(fontelabels);
 				painel9.add(tamanho);
+				
+				JSpinner senhatam = new JSpinner(new IntegerOnlySpinnerModel());
+				senhatam.setBounds(210, 90, 100, 25);
+				painel9.add(senhatam);
+
 				
 				buttonP9 = new JButton();
 				buttonP9.setText("Calcular");
@@ -1025,11 +1115,19 @@ public class Tela extends JFrame {
 				buttonP9.setBorder(customBorderButton);
 				
 				buttonP9.addMouseListener(new MouseAdapter() {
-				    @Override
+
+					@Override
 				    public void mouseClicked(MouseEvent e) {
-				    	
-//				        System.out.println(Checkmaiuscula.getText());
-				       
+						//PARAMOS AQUI
+//						int Maisc;
+//						int Minu;
+//						int Minu;
+//						int Num;
+//						int qtda;
+//				        Funcoes funcoes = new Funcoes(Maisc,Minu,Minu,Num,qtda);
+//				        double resultado = funcoes.aplicarDescontoNumValor();
+//				        resultadoString = String.valueOf(resultado); 
+//				        result.setText(resultadoString);
 				    }
 				});
 				painel9.add(buttonP9);
@@ -1045,6 +1143,7 @@ public class Tela extends JFrame {
 	}
 	
 	public static void main(String[] args) {
+		
 		new Tela();
 	}
 }
