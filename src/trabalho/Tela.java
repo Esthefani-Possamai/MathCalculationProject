@@ -31,9 +31,10 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.AbstractDocument;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import util.NumericAndLengthFilter;
-
 
 public class Tela extends JFrame {
 	
@@ -199,7 +200,15 @@ public class Tela extends JFrame {
 	//---------------------------------------
 	
 	//Variáveis dos resultados:
-	String resultadoString = "";
+	String resultadoString1 = "";
+	String resultadoString2 = "";
+	String resultadoString3 = "";
+	String resultadoString4 = "";
+	String resultadoString5 = "";
+	String resultadoString6 = "";
+	String resultadoString7 = "";
+	String resultadoString8 = "";
+	String resultadoString9 = "";
 	
 	private class IntegerOnlySpinnerModel extends SpinnerNumberModel {
         public IntegerOnlySpinnerModel() {
@@ -354,7 +363,7 @@ public class Tela extends JFrame {
 			textresult.setForeground( resultcolor );
 			painel1.add(textresult);
 			
-			result = new JLabel(resultadoString);
+			result = new JLabel(resultadoString1);
 			result.setHorizontalAlignment(SwingConstants.CENTER);
 			result.setBounds(lt3text);
 			result.setFont(fontelabelformula);
@@ -392,8 +401,8 @@ public class Tela extends JFrame {
 			    	double b = Double.parseDouble(descontotextfield.getText());	
 			        Funcoes funcoes = new Funcoes(a,b);
 			        double resultado = funcoes.aplicarDescontoNumValor();
-			        resultadoString = String.valueOf(resultado); 
-			        result.setText(resultadoString);
+			        resultadoString1 = String.valueOf(resultado); 
+			        result.setText(resultadoString1);
 			    }
 			});
 			painel1.add(button);
@@ -451,7 +460,7 @@ public class Tela extends JFrame {
 			textresultP2.setForeground( resultcolor );
 			painel2.add(textresultP2);
 			
-			resultP2 = new JLabel();
+			resultP2 = new JLabel(resultadoString2);
 			resultP2.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP2.setBounds(lt3text);
 			resultP2.setFont(fontelabelformula);
@@ -479,10 +488,14 @@ public class Tela extends JFrame {
 			buttonP2.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalueP2.getText());
-			        System.out.println(descontotextfieldP2.getText());
-			    }
+                    double a = Double.parseDouble(initialvalueP2.getText());
+                    double b = Double.parseDouble(descontotextfieldP2.getText());
+                    Funcoes funcoes= new Funcoes(a,b);
+                    double resultado2 = funcoes.incrementarPorcAUmValor();
+                    resultadoString2 = String.valueOf(resultado2);
+                    resultP2.setText(resultadoString2);
+                    System.out.print("ok");
+				}
 			});
 			painel2.add(buttonP2);
 		
@@ -537,7 +550,7 @@ public class Tela extends JFrame {
 			textresultP3.setForeground( resultcolor );
 			painel3.add(textresultP3);
 			
-			resultP3 = new JLabel();
+			resultP3 = new JLabel(resultadoString3);
 			resultP3.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP3.setBounds(lt3text);
 			resultP3.setFont(fontelabelformula);
@@ -565,10 +578,13 @@ public class Tela extends JFrame {
 			buttonP3.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalueP3.getText());
-			        System.out.println(descontotextfieldP3.getText());
-			    }
+                    double a = Double.parseDouble(initialvalueP3.getText());
+                    double b = Double.parseDouble(descontotextfieldP3.getText());
+                    Funcoes funcoes= new Funcoes(a,b);
+                    double resultado = funcoes.XporcRepresentaDeY();
+                    resultadoString3 = String.valueOf(resultado);
+                    resultP3.setText(resultadoString3);
+				}
 			});
 			painel3.add(buttonP3);
 		
@@ -623,7 +639,7 @@ public class Tela extends JFrame {
 			textresultP4.setForeground( resultcolor );
 			painel4.add(textresultP4);
 			
-			resultP4 = new JLabel();
+			resultP4 = new JLabel(resultadoString4);
 			resultP4.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP4.setBounds(lt3text);
 			resultP4.setFont(fontelabelformula);
@@ -651,10 +667,13 @@ public class Tela extends JFrame {
 			buttonP4.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalueP4.getText());
-			        System.out.println(descontotextfieldP4.getText());
-			    }
+                    double a = Double.parseDouble(initialvalueP4.getText());
+                    double b = Double.parseDouble(descontotextfieldP4.getText());
+                    Funcoes funcoes= new Funcoes(a,b);
+                    double resultado = funcoes.XRepresentaDeYporc();
+                    resultadoString4 = String.valueOf(resultado);
+                    resultP4.setText(resultadoString4);
+				}
 			});
 			painel4.add(buttonP4);
 	
@@ -710,7 +729,7 @@ public class Tela extends JFrame {
 			textresultP5.setForeground( resultcolor );
 			painel5.add(textresultP5);
 			
-			resultP5 = new JLabel();
+			resultP5 = new JLabel(resultadoString5);
 			resultP5.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP5.setBounds(lt3text);
 			resultP5.setFont(fontelabelformula);
@@ -738,10 +757,13 @@ public class Tela extends JFrame {
 			buttonP5.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalueP4.getText());
-			        System.out.println(descontotextfieldP4.getText());
-			    }
+                    double a = Double.parseDouble(initialvalueP5.getText());
+                    double b = Double.parseDouble(descontotextfieldP5.getText());
+                    Funcoes funcoes= new Funcoes(a,b);
+                    double resultado = funcoes.ValorAPagueiB();
+                    resultadoString5 = String.valueOf(resultado);
+                    resultP5.setText(resultadoString5);
+				}
 			});
 			painel5.add(buttonP5);
 		
@@ -797,7 +819,7 @@ public class Tela extends JFrame {
 			textresultP6.setForeground( resultcolor );
 			painel6.add(textresultP6);
 			
-			resultP6 = new JLabel();
+			resultP6 = new JLabel(resultadoString6);
 			resultP6.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP6.setBounds(lt3text);
 			resultP6.setFont(fontelabelformula);
@@ -825,22 +847,13 @@ public class Tela extends JFrame {
 			buttonP6.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalueP6.getText());
-			        System.out.println(descontotextfieldP6.getText());
-//			        
-//			        try {
-//			        	double a = Double.parseDouble(initialvalueP6.getText());	
-//			        }
-//			        catch (Exception ex) {
-//						JOptionPane.showMessageDialog(null, "Conteudo invalido no campo <VALOR INICIAL (A)>");
-//						initialvalueP6.requestFocus();
-//						initialvalueP6.setSelectionStart(0);
-//						initialvalueP6.setSelectionEnd(initialvalueP6.getText().length());
-//					}
-			        
-			        
-			    }
+                    double a = Double.parseDouble(initialvalueP6.getText());
+                    double b = Double.parseDouble(descontotextfieldP6.getText());
+                    Funcoes funcoes= new Funcoes(a,b);
+                    double resultado = funcoes.VariacaoDelta();
+                    resultadoString6 = String.valueOf(resultado);
+                    resultP6.setText(resultadoString6);
+				}
 			});
 			painel6.add(buttonP6);
 		
@@ -895,7 +908,7 @@ public class Tela extends JFrame {
 			textresultP7.setForeground( resultcolor );
 			painel7.add(textresultP7);
 			
-			resultP7 = new JLabel();
+			resultP7 = new JLabel(resultadoString7);
 			resultP7.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP7.setBounds(lt3text);
 			resultP7.setFont(fontelabelformula);
@@ -923,10 +936,13 @@ public class Tela extends JFrame {
 			buttonP7.addMouseListener(new MouseAdapter() {
 			    @Override
 			    public void mouseClicked(MouseEvent e) {
-			    	//quando o botão é clicado, eu pego o valor digitado em initialvalue e printo no console
-			        System.out.println(initialvalueP7.getText());
-			        System.out.println(descontotextfieldP7.getText());
-			    }
+                    double a = Double.parseDouble(initialvalueP7.getText());
+                    double b = Double.parseDouble(descontotextfieldP7.getText());
+                    Funcoes funcoes= new Funcoes(a,b);
+                    double resultado = funcoes.QualValorOriginal();
+                    resultadoString7 = String.valueOf(resultado);
+                    resultP7.setText(resultadoString7);
+				}
 			});
 			painel7.add(buttonP7);
 			
@@ -999,7 +1015,7 @@ public class Tela extends JFrame {
 				textresultP8.setForeground( resultcolor );
 				painel8.add(textresultP8);
 				
-				resultP8 = new JLabel();
+				resultP8 = new JLabel(resultadoString8);
 				resultP8.setHorizontalAlignment(SwingConstants.CENTER);
 				resultP8.setBounds(290, 75, 100, 25);
 				resultP8.setFont(fontelabelformula);
@@ -1027,13 +1043,14 @@ public class Tela extends JFrame {
 				buttonP8.addMouseListener(new MouseAdapter() {
 				    @Override
 				    public void mouseClicked(MouseEvent e) {
-				    	//a
-				        System.out.println(atfP8.getText());
-				        //b
-				        System.out.println(btfP8.getText());
-				        //r1
-				        System.out.println(r1tfP8.getText());
-				    }
+	                    double a = Double.parseDouble(atfP8.getText());
+	                    double b = Double.parseDouble(btfP8.getText());
+	                    double c = Double.parseDouble(r1tfP8.getText());
+	                    Funcoes funcoes= new Funcoes(a,b);
+	                    double resultado = funcoes.RegraDTres(a, b, c);
+	                    resultadoString8 = String.valueOf(resultado);
+	                    resultP8.setText(resultadoString8);
+					}
 				});
 				painel8.add(buttonP8);
 			
@@ -1118,21 +1135,47 @@ public class Tela extends JFrame {
 
 					@Override
 				    public void mouseClicked(MouseEvent e) {
-						//PARAMOS AQUI
-//						int Maisc;
-//						int Minu;
-//						int Minu;
-//						int Num;
-//						int qtda;
-//				        Funcoes funcoes = new Funcoes(Maisc,Minu,Minu,Num,qtda);
-//				        double resultado = funcoes.aplicarDescontoNumValor();
-//				        resultadoString = String.valueOf(resultado); 
-//				        result.setText(resultadoString);
+//						PARAMOS AQUI
+						double a = 0;
+						double b = 0;
+						int Maisc;
+						int Minu;
+						int Simb;
+						int Num;
+						int qtda = (int) senhatam.getValue();
+						
+						if(Checkmaiuscula.isSelected()) {
+							Maisc = 1;
+						}else {
+							Maisc = 0;
+						}
+						if(Checkminuscula.isSelected()) {
+							Minu = 1;
+						}else {
+							Minu = 0;
+						}
+						if(Checksimbolos.isSelected()) {
+							Simb = 1;
+						}else {
+							Simb = 0;
+						}
+						if(Checknumeros.isSelected()) {
+							Num = 1;
+						}else {
+							Num = 0;
+						}
+						
+						
+						
+				        Funcoes funcoes = new Funcoes(a, b);
+				        String resultado = funcoes.gerador(Maisc,Minu,Simb,Num,qtda);
+				        resultadoString9 = String.valueOf(resultado); 
+				        resultsenha.setText(resultadoString9);
 				    }
 				});
 				painel9.add(buttonP9);
 				
-				resultsenha = new JLabel();
+				resultsenha = new JLabel(resultadoString9);
 				resultsenha.setHorizontalAlignment(SwingConstants.CENTER);
 				resultsenha.setBounds(50, 160, 355,25);
 				resultsenha.setFont(fontelabelformula);
