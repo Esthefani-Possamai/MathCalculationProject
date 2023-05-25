@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -52,7 +55,7 @@ public class Tela extends JFrame {
 	private JLabel formula;
 	
 	private JLabel textresult;
-	private JLabel result;
+	private JTextField result;
 	private JButton button;
 	
 	//-------------------------------------------
@@ -68,7 +71,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP2;
 	
 	private JLabel textresultP2;
-	private JLabel resultP2;
+	private JTextField resultP2;
 	private JButton buttonP2;
 	
 	//--------------------------------------------
@@ -84,7 +87,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP3;
 	
 	private JLabel textresultP3;
-	private JLabel resultP3;
+	private JTextField resultP3;
 	private JButton buttonP3;
 	
 	//--------------------------------------------
@@ -101,7 +104,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP4;
 	
 	private JLabel textresultP4;
-	private JLabel resultP4;
+	private JTextField resultP4;
 	private JButton buttonP4;
 	
 //---------------------------------------
@@ -117,7 +120,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP5;
 	
 	private JLabel textresultP5;
-	private JLabel resultP5;
+	private JTextField resultP5;
 	private JButton buttonP5;
 	
 	//----------------------------------
@@ -134,7 +137,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP6;
 	
 	private JLabel textresultP6;
-	private JLabel resultP6;
+	private JTextField resultP6;
 	private JButton buttonP6;
 	
 	//----------------------------------------
@@ -151,7 +154,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP7;
 	
 	private JLabel textresultP7;
-	private JLabel resultP7;
+	private JTextField resultP7;
 	private JButton buttonP7;
 	
 	//---------------------------------------
@@ -172,7 +175,7 @@ public class Tela extends JFrame {
 	private JLabel formulaP8;
 	
 	private JLabel textresultP8;
-	private JLabel resultP8;
+	private JTextField resultP8;
 	private JButton buttonP8;
 	
 	//---------------------------------------
@@ -193,7 +196,7 @@ public class Tela extends JFrame {
 	private JSpinner senhatam;
 	
 	private JLabel senha;
-	private JLabel resultsenha;
+	private JTextField resultsenha;
 	
 	private JButton buttonP9;
 	
@@ -269,7 +272,6 @@ public class Tela extends JFrame {
 	
 	private void componentesCriar () {
 		
-		
 		Font fontetitle = new Font( "Poppins", Font.PLAIN, 20);
 		Font fontelabels = new Font( "Poppins", Font.PLAIN, 14);
 		Font fontelabelformula = new Font( "Poppins", Font.PLAIN, 12); //Fonte para a formula
@@ -301,6 +303,12 @@ public class Tela extends JFrame {
 		titleAllTela.setForeground( borderColor );
 		titleAllTela.setFont(fontetitle);
 		getContentPane().add(titleAllTela);
+		
+//		JLabel labelicon = new JLabel();
+//		ImageIcon icon = new ImageIcon("util/imagemath.png");
+//		labelicon.setIcon(icon);
+//		labelicon.setBounds(600, 10, icon.getIconWidth(), icon.getIconHeight());
+//		getContentPane().add(labelicon);
 		
 		//painel 1 
 		painel1 = new JPanel();
@@ -363,13 +371,14 @@ public class Tela extends JFrame {
 			textresult.setForeground( resultcolor );
 			painel1.add(textresult);
 			
-			result = new JLabel(resultadoString1);
+			result = new JTextField(resultadoString1);
 			result.setHorizontalAlignment(SwingConstants.CENTER);
 			result.setBounds(lt3text);
 			result.setFont(fontelabelformula);
 			Border customBorderResult = BorderFactory.createLineBorder(resultcolor, 2 );
 			result.setBorder(customBorderResult);
 			result.setForeground( resultcolor );
+			result.setEditable(false);
 			painel1.add(result);
 			
 			//Label da fórmula
@@ -460,12 +469,13 @@ public class Tela extends JFrame {
 			textresultP2.setForeground( resultcolor );
 			painel2.add(textresultP2);
 			
-			resultP2 = new JLabel(resultadoString2);
+			resultP2 = new JTextField(resultadoString2);
 			resultP2.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP2.setBounds(lt3text);
 			resultP2.setFont(fontelabelformula);
 			resultP2.setBorder(customBorderResult);
 			resultP2.setForeground( resultcolor );
+			resultP2.setEditable(false);
 			painel2.add(resultP2);
 
 			formulaP2 = new JLabel ("v = a + ((a * b) / 100)");
@@ -550,12 +560,13 @@ public class Tela extends JFrame {
 			textresultP3.setForeground( resultcolor );
 			painel3.add(textresultP3);
 			
-			resultP3 = new JLabel(resultadoString3);
+			resultP3 = new JTextField(resultadoString3);
 			resultP3.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP3.setBounds(lt3text);
 			resultP3.setFont(fontelabelformula);
 			resultP3.setBorder(customBorderResult);
 			resultP3.setForeground( resultcolor );
+			resultP3.setEditable(false);
 			painel3.add(resultP3);
 	
 			formulaP3 = new JLabel ("v = (a * b) / 100");
@@ -628,7 +639,7 @@ public class Tela extends JFrame {
 			painel4.add(descontotextfieldP4);
 			
 			porcentagemP4 = new JLabel("%");
-			porcentagemP4.setBounds(boundsporc);
+			porcentagemP4.setBounds(280, 90, 25, 25);
 			porcentagemP4.setFont(fontelabels);
 			painel4.add(porcentagemP4);
 	
@@ -639,12 +650,13 @@ public class Tela extends JFrame {
 			textresultP4.setForeground( resultcolor );
 			painel4.add(textresultP4);
 			
-			resultP4 = new JLabel(resultadoString4);
+			resultP4 = new JTextField(resultadoString4);
 			resultP4.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP4.setBounds(lt3text);
 			resultP4.setFont(fontelabelformula);
 			resultP4.setBorder(customBorderResult);
 			resultP4.setForeground( resultcolor );
+			resultP4.setEditable(false);
 			painel4.add(resultP4);
 	
 			formulaP4 = new JLabel ("v = (b / a) * 100");
@@ -718,7 +730,7 @@ public class Tela extends JFrame {
 			painel5.add(descontotextfieldP5);
 			
 			porcentagemP5 = new JLabel("%");
-			porcentagemP5.setBounds(boundsporc);
+			porcentagemP5.setBounds(280, 90, 25, 25);
 			porcentagemP5.setFont(fontelabels);
 			painel5.add(porcentagemP5);
 
@@ -729,12 +741,13 @@ public class Tela extends JFrame {
 			textresultP5.setForeground( resultcolor );
 			painel5.add(textresultP5);
 			
-			resultP5 = new JLabel(resultadoString5);
+			resultP5 = new JTextField(resultadoString5);
 			resultP5.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP5.setBounds(lt3text);
 			resultP5.setFont(fontelabelformula);
 			resultP5.setBorder(customBorderResult);
 			resultP5.setForeground( resultcolor );
+			resultP5.setEditable(false);
 			painel5.add(resultP5);
 	
 			formulaP5 = new JLabel ("v = ((a - b) / a ) * 100");
@@ -808,7 +821,7 @@ public class Tela extends JFrame {
 			painel6.add(descontotextfieldP6);
 			
 			porcentagemP6 = new JLabel("%");
-			porcentagemP6.setBounds(boundsporc);
+			porcentagemP6.setBounds(280, 90, 25, 25);
 			porcentagemP6.setFont(fontelabels);
 			painel6.add(porcentagemP6);
 	
@@ -819,15 +832,16 @@ public class Tela extends JFrame {
 			textresultP6.setForeground( resultcolor );
 			painel6.add(textresultP6);
 			
-			resultP6 = new JLabel(resultadoString6);
+			resultP6 = new JTextField(resultadoString6);
 			resultP6.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP6.setBounds(lt3text);
 			resultP6.setFont(fontelabelformula);
 			resultP6.setBorder(customBorderResult);
 			resultP6.setForeground( resultcolor );
+			resultP6.setEditable(false);
 			painel6.add(resultP6);
 	
-			formulaP6 = new JLabel ("");
+			formulaP6 = new JLabel ("v = ((b - a) / a) * 100");
 			formulaP6.setHorizontalAlignment(SwingConstants.CENTER);
 			formulaP6.setBounds(lformula);
 			formulaP6.setFont(fontelabelformula);
@@ -908,12 +922,13 @@ public class Tela extends JFrame {
 			textresultP7.setForeground( resultcolor );
 			painel7.add(textresultP7);
 			
-			resultP7 = new JLabel(resultadoString7);
+			resultP7 = new JTextField(resultadoString7);
 			resultP7.setHorizontalAlignment(SwingConstants.CENTER);
 			resultP7.setBounds(lt3text);
 			resultP7.setFont(fontelabelformula);
 			resultP7.setBorder(customBorderResult);
 			resultP7.setForeground( resultcolor );
+			resultP7.setEditable(false);
 			painel7.add(resultP7);
 	
 			formulaP7 = new JLabel ("v = (a * 100 / (100 - b))");
@@ -1015,12 +1030,13 @@ public class Tela extends JFrame {
 				textresultP8.setForeground( resultcolor );
 				painel8.add(textresultP8);
 				
-				resultP8 = new JLabel(resultadoString8);
+				resultP8 = new JTextField(resultadoString8);
 				resultP8.setHorizontalAlignment(SwingConstants.CENTER);
 				resultP8.setBounds(290, 75, 100, 25);
 				resultP8.setFont(fontelabelformula);
 				resultP8.setBorder(customBorderResult);
 				resultP8.setForeground( resultcolor );
+				resultP8.setEditable(false);
 				painel8.add(resultP8);
 				
 				formulaP8 = new JLabel ("r2 = (r1 * b) / a");
@@ -1117,7 +1133,7 @@ public class Tela extends JFrame {
 				tamanho.setFont(fontelabels);
 				painel9.add(tamanho);
 				
-				JSpinner senhatam = new JSpinner(new IntegerOnlySpinnerModel());
+				JSpinner senhatam = new JSpinner(new SpinnerNumberModel());
 				senhatam.setBounds(210, 90, 100, 25);
 				painel9.add(senhatam);
 
@@ -1135,52 +1151,61 @@ public class Tela extends JFrame {
 
 					@Override
 				    public void mouseClicked(MouseEvent e) {
-//						PARAMOS AQUI
-						double a = 0;
-						double b = 0;
-						int Maisc;
-						int Minu;
-						int Simb;
-						int Num;
-						int qtda = (int) senhatam.getValue();
+						Object value = senhatam.getValue();
 						
-						if(Checkmaiuscula.isSelected()) {
-							Maisc = 1;
-						}else {
-							Maisc = 0;
-						}
-						if(Checkminuscula.isSelected()) {
-							Minu = 1;
-						}else {
-							Minu = 0;
-						}
-						if(Checksimbolos.isSelected()) {
-							Simb = 1;
-						}else {
-							Simb = 0;
-						}
-						if(Checknumeros.isSelected()) {
-							Num = 1;
-						}else {
-							Num = 0;
-						}
+						 if (!Checkmaiuscula.isSelected() && !Checkminuscula.isSelected() && !Checksimbolos.isSelected() && !Checknumeros.isSelected()) {
+						        JOptionPane.showMessageDialog(null, "Selecione ao menos uma opção para a senha ser gerada", "Aviso", JOptionPane.WARNING_MESSAGE);
+						    } else if (value instanceof Number) {
+						        double a = 0;
+						        double b = 0;
+						        int Maisc;
+						        int Minu;
+						        int Simb;
+						        int Num;
+						        int qtda = ((Number) value).intValue();
+						        
+						        if (Checkmaiuscula.isSelected()) {
+						            Maisc = 1;
+						        } else {
+						            Maisc = 0;
+						        }
+						        if (Checkminuscula.isSelected()) {
+						            Minu = 1;
+						        } else {
+						            Minu = 0;
+						        }
+						        if (Checksimbolos.isSelected()) {
+						            Simb = 1;
+						        } else {
+						            Simb = 0;
+						        }
+						        if (Checknumeros.isSelected()) {
+						            Num = 1;
+						        } else {
+						            Num = 0;
+						        }
+						        
+						        Funcoes funcoes = new Funcoes(a, b);
+						        String resultado = funcoes.gerador(Maisc, Minu, Simb, Num, qtda);
+						        resultadoString9 = String.valueOf(resultado);
+						        resultsenha.setText(resultadoString9);
+						    } else {
+						        JOptionPane.showMessageDialog(null, "Digite um valor válido.", "Aviso", JOptionPane.WARNING_MESSAGE);
+						    }
+						 
+						 
 						
-						
-						
-				        Funcoes funcoes = new Funcoes(a, b);
-				        String resultado = funcoes.gerador(Maisc,Minu,Simb,Num,qtda);
-				        resultadoString9 = String.valueOf(resultado); 
-				        resultsenha.setText(resultadoString9);
 				    }
 				});
 				painel9.add(buttonP9);
 				
-				resultsenha = new JLabel(resultadoString9);
+				resultsenha = new JTextField (resultadoString9);
 				resultsenha.setHorizontalAlignment(SwingConstants.CENTER);
 				resultsenha.setBounds(50, 160, 355,25);
 				resultsenha.setFont(fontelabelformula);
 				resultsenha.setBorder(customBorderResult);
 				resultsenha.setForeground( resultcolor );
+				resultsenha.setEditable(false);
 				painel9.add(resultsenha);
 		
 	}
