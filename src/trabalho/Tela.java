@@ -200,6 +200,10 @@ public class Tela extends JFrame {
 	
 	private JButton buttonP9;
 	
+	//Label da imagem
+	
+	private JLabel img;
+	
 	//---------------------------------------
 	
 	//Variáveis dos resultados:
@@ -304,12 +308,11 @@ public class Tela extends JFrame {
 		titleAllTela.setFont(fontetitle);
 		getContentPane().add(titleAllTela);
 		
-//		JLabel labelicon = new JLabel();
-//		ImageIcon icon = new ImageIcon("util/imagemath.png");
-//		labelicon.setIcon(icon);
-//		labelicon.setBounds(600, 10, icon.getIconWidth(), icon.getIconHeight());
-//		getContentPane().add(labelicon);
+		img = new JLabel(new ImageIcon("imagemath.png"));
+		img.setBounds(970, 300, 270, 350);
+		getContentPane().add(img);
 		
+	
 		//painel 1 
 		painel1 = new JPanel();
 		//dimensões
